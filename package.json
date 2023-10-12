@@ -6,11 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "@apollo/client": "^3.8.4",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "antd": "^5.9.3",
+    "axios": "^1.5.0",
+    "graphql": "^16.8.1",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "ts-node": "^10.9.1",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@types/node": "17.0.2",
+    "@types/react": "17.0.2",
+    "typescript": "^5.2.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2"
   }
 }

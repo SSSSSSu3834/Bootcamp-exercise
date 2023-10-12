@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5", //어떤 js버전으로 변경
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true, //js와 ts를 혼용할 수 있을것인지
+    "skipLibCheck": true, //다른 사람이 만든 파일의 검사는 스킵하겠다.
+    "strict": true, //타입을 엄격하게 볼것인가
+    "forceConsistentCasingInFileNames": true, //파일의 대소문자 무시할거냐?
+    "noEmit": true, //js로 변경된 파일을 생성하지 않을것인가?
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext", //js최신버전: import를 사용해 파일을 불러올 수 있다.
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
