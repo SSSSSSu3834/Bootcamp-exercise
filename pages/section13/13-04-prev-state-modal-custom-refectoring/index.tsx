@@ -1,10 +1,9 @@
-import { JsxElement } from "typescript";
 import { Modal } from "antd";
 import { useState } from "react";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { Address } from "cluster";
 
-export default function ModalAlertPage(): JsxElement {
+export default function ModalAlertPage(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
 
   const onToggleModal = (): void => {
