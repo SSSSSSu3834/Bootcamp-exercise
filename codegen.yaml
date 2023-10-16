@@ -1,7 +1,7 @@
 # yaml 파일은 띄어쓰기 기준으로 설정하는 파일이다.
 # 띄어쓰기 기준으로 부모자식간의 관계가 형성된다.
 
-schema: http://backend-example.codebootcamp.co.kr/graphql
+schema: http://backend-practice.codebootcamp.co.kr/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:
