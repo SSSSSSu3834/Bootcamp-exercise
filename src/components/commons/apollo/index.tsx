@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/stores";
 import { useEffect } from "react";
+import { onError } from "@apollo/client/link/error";
 
 const GLOBAL_STATE = new InMemoryCache();
 
@@ -35,6 +36,13 @@ export default function ApolloSetting(props: IApolloSetting): JSX.Element {
     const result = localStorage.getItem("accessToken");
     setAccessToken(result ?? "");
   }, []);
+
+  // 실패한 쿼리: operation,  재요청 함수: forward
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    // 1. 에러 캐치
+    // 2. refreshToken으로 accessToken 재발급 받기
+    // 3. 재발급 받은 accessToken으로 방금 실패한 쿼리 재요청하기
+  });
 
   const client = new ApolloClient({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql",
