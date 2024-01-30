@@ -3,16 +3,15 @@ import { useState } from "react";
 
 export default function GraphqlMutationPage() {
   const [name, setName] = useState();
-  const [detail, setDetail] = useState();
-  const [price, setPrice] = useState();
+  const [title, setTitle] = useState();
+  const [contents, setContents] = useState();
 
   const CREATE_PRODUCT = gql`
-    mutation createProduct(
-      $seller: String
-      $createProductInput: CreateProductInput!
-    ) {
-      createProduct(seller: $seller, createProductInput: $createProductInput) {
+    mutation createBoard($writer: String, $title: String, $contents: String) {
+      createBoard(writer: $writer, title: $title, contents: $contents) {
         _id
+        number
+        message
       }
     }
   `;
@@ -22,12 +21,9 @@ export default function GraphqlMutationPage() {
   const onClickSubmit = async () => {
     const result = await myfunc({
       variables: {
-        seller: "훈이",
-        createProductInput: {
-          name: name,
-          detail: detail,
-          price: parseInt(price),
-        },
+        writer: name,
+        title,
+        contents,
       },
     });
     console.log(result);
@@ -37,17 +33,17 @@ export default function GraphqlMutationPage() {
     setName(e.target.value);
   };
   const onChangeDetail = (e) => {
-    setDetail(e.target.value);
+    setTitle(e.target.value);
   };
   const onChangePrice = (e) => {
-    setPrice(e.target.value);
+    setContents(e.target.value);
   };
 
   return (
     <div>
-      작성자: <input type="text" value={name} onChange={onChangeName} />
-      상세 설명: <input type="text" value={detail} onChange={onChangeDetail} />
-      가격: <input type="int" value={price} onChange={onChangePrice} />
+      작성자: <input type="text" onChange={onChangeName} />
+      상세 설명: <input type="text" onChange={onChangeDetail} />
+      가격: <input type="text" onChange={onChangePrice} />
       <button onClick={onClickSubmit}>graphql-api 요청하기</button>
     </div>
   );

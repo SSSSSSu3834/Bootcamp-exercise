@@ -1,8 +1,10 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/stores";
 import { useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from 'apollo-upload-client';
+
 
 const GLOBAL_STATE = new InMemoryCache();
 
@@ -12,7 +14,11 @@ interface IApolloSetting {
 
 export default function ApolloSetting(props: IApolloSetting): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-
+  
+  //사진 업로드를 위한 기능추가
+  const uploadLink = createUploadLink({
+    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
+  })
   // 1. 프리렌더링 예제 - process.browser 방법
   // if (process.browser) {
   //   console.log("나는 지금 브라우저다");
@@ -45,7 +51,7 @@ export default function ApolloSetting(props: IApolloSetting): JSX.Element {
   });
 
   const client = new ApolloClient({
-    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
+    link: ApolloLink.from([uploadLink]),
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

@@ -25,7 +25,7 @@ const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath)
   return (
     <div>
         {!isHiddenHeader && <LayoutHeader /> }
-        <LayoutBanner>
+        <LayoutBanner />
         <LayoutNav />
       
       <div>{props.children}</div>
